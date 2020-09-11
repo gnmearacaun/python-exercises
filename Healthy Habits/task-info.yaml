@@ -1,0 +1,21 @@
+type: code
+files:
+- name: main.py
+  visible: true
+  text: |-
+    # the list "walks" is already defined
+    # your code here
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/9009
+status: Failed
+feedback:
+  message: |
+    Failed. Runtime error
+
+    Error:
+    Traceback (most recent call last):
+      File "jailed_code", line 26, in <module>
+        summation += walks.get['distance']
+    AttributeError: 'list' object has no attribute 'get'
+  time: Fri, 11 Sep 2020 02:57:59 UTC
+record: -1
