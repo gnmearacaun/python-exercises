@@ -10,9 +10,9 @@ files:
         pass
   learner_created: false
 feedback_link: https://hyperskill.org/learn/step/8563
-status: Failed
+status: Solved
 feedback:
-  message: |
-    Failed test #1 of 10. Wrong answer
-  time: Mon, 21 Sep 2020 19:34:05 UTC
+  message: <html>Correct solution<br/><br/>Continue on <a href="https://hyperskill.org/learn/step/8563">JetBrains
+    Academy</a></html>
+  time: Tue, 22 Sep 2020 23:33:31 UTC
 record: -1
