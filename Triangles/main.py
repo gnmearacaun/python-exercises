@@ -11,3 +11,7 @@ class Triangle:
 class EquilateralTriangle(Triangle):
     def __init__(self, side):
         # finish the method
+        super().__init__(side1=side, side2=side, side3=side)
+# obtuse = Triangle(12, 13, 14)
+# et = EquilateralTriangle(12)
+# print(obtuse.get_perimeter(), et.get_perimeter())

@@ -1,5 +1,5 @@
 template = """
 <html>
-  <h2> </h2>
+  <h2>{{ blog_name }}</h2>
 </html>
 """

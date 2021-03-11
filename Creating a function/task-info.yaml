@@ -14,5 +14,9 @@ files:
             return(math.sqrt(value))
   learner_created: false
 feedback_link: https://hyperskill.org/learn/step/8242
-status: Unchecked
+status: Solved
+feedback:
+  message: <html>Correct solution<br/><br/>Continue on <a href="https://hyperskill.org/learn/step/8242">JetBrains
+    Academy</a></html>
+  time: Sun, 27 Sep 2020 20:55:49 UTC
 record: -1

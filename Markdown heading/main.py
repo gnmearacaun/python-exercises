@@ -13,3 +13,13 @@ def heading(my_title, n=1):
         final = 1
     return final * "#" + " " + my_title
 # print(heading("Vunderbar", 7))
+
+"""def heading(my_title, n=1):
+    if 1 <= n <= 6:
+        return n * "#" + " " + my_title
+    elif n > 6:
+        return 6 * "#" + " " + my_title
+    else:
+        return "#" + " " + my_title"""
+
+#print(heading("Vunderbar", 7))

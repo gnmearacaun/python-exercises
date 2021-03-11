@@ -10,4 +10,8 @@ CINEMA_RATINGS = {
 
 class CinemaRatingView(View):
     def get(self, request, film, *args, **kwargs):
-        ...
+        if film not in CINEMA_RATINGS:
+            raise Http404
+
+        return HttpResponse(CINEMA_RATINGS[film])
+

@@ -7,3 +7,8 @@ class Mammal:
 
 
 # create class Dolphin here
+class Dolphin(Mammal):
+    def __init__(self):
+        super().__init__()
+        super().greet()
+        self.bio_class = "dolphin"

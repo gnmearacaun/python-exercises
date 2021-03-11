@@ -1,9 +1,9 @@
 template = """
 <html>
   <ul>
-  {% %}
-    <li> {{ }} </li>
-  {% %}
+  {% for todo in todos %}
+    <li> {{ todo }} </li>
+  {% endfor %}
   </ul>
 </html>
 """

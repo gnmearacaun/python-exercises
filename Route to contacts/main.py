@@ -7,5 +7,5 @@ class ContactsView(View):
 
 
 urlpatterns = [
-
+    path('contacts/', ContactsView.as_view())
 ]

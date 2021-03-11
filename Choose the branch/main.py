@@ -1,5 +1,5 @@
 template = """
 <html>
-  <div>{% %} {{ }} {% %}</div>
+  <div>{% if post.author %} {{ post.text }} {% endif %}</div>
 </html>
 """

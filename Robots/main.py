@@ -11,6 +11,7 @@ class Robot:
 class ServiceRobot(Robot):
     def __init__(self, name):
         self.name = name
+        super().__init__(name, variety="service")
 
 
 chappi = ServiceRobot("Chappi")

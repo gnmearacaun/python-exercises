@@ -7,3 +7,7 @@ class Account:
 
 
 # create the class here
+class InstagramAccount(Account):
+    def __init__(self, username, n_followers, n_following, media="Instagram"):
+        self.n_following = n_following
+        super().__init__(media, username, n_followers)
