@@ -1,20 +1,19 @@
 # python-exercises
 ****************************************
-What follows is a complete record of the Python Developer Track stages that I have completed on Jetbrains Hyperskill Academy. The course material below consist of the modules I unlocked by completing the python exercise problems contained in this repo. The problems represent my foundation learning in Python programming.
+What follows is a complete record of the Python Developer Track stages that I have completed on Jetbrains Hyperskill Academy using Pycharm (IDE created by Jetbrains). The course material below consist of the modules I unlocked by completing the python exercise problems contained in this repo (including a few that I've skipped for later). The problems represent my foundation learning in Python programming.
 
 ***************************************
 Project: HyperJob Agency: a website in Django
 Stage #1: Creating models
-Description
-The "HyperJob" recruitment agency is a very conservative one. Its history starts on January 1st, 1970 . The managers in the agency prefer communicating by phone or email and searching for employees personally. That was an efficient strategy some ten years ago, but now the candidates prefer to apply for jobs online. The problem is that "HyperJob" still doesn't have a site, so they need you to create the service as soon as possible.
+Description: The "HyperJob" recruitment agency is a very conservative one. Its history starts on January 1st, 1970 . The managers in the agency prefer communicating by phone or email and searching for employees personally. That was an efficient strategy some ten years ago, but now the candidates prefer to apply for jobs online. The problem is that "HyperJob" still doesn't have a site, so they need you to create the service as soon as possible.
 
 We start with a simple site that will be suitable for:
 
-Creating a new vacancy by the agency's manager
-Creating a new resume by a candidate
+Creating a new vacancy by the agency's manager.
+Creating a new resume by a candidate.
 We know that it will be a long road, so at each stage you will make only a small part of work. By the end, we'll have a working site that fulfills all the requirements.
 
-Objectives
+Objectives:
 Your first task is to prepare the models for the data. It's important to keep all the data safe. We need to store all the vacancies and resumes persistently in the database. Create models to manage the database tables.
 
 Use the default settings of the project with a predefined SQLite database.
