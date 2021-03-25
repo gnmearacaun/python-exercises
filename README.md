@@ -1,11 +1,9 @@
 # python-exercises
+****************************************
+What follows is a complete record of the Python Developer Track stages that I have completed on Jetbrains Hyperskill Academy. The course material below consist of the modules I unlocked by completing the python exercise problems contained in this repo. The problems represent my foundation learning in Python programming.
 
-These are exercises from the Jetbrains Academy that I have either completed or have skipped and intend to go back over. 
-
-Here is an a transcript of the Project lessons, a website in Django, and the Python topics that are covered along the way.
-
-    JetBrains Academy / Hyperskill 
-
+***************************************
+Project: HyperJob Agency: a website in Django
 Stage #1: Creating models
 Description
 The "HyperJob" recruitment agency is a very conservative one. Its history starts on January 1st, 1970 . The managers in the agency prefer communicating by phone or email and searching for employees personally. That was an efficient strategy some ten years ago, but now the candidates prefer to apply for jobs online. The problem is that "HyperJob" still doesn't have a site, so they need you to create the service as soon as possible.
@@ -7826,28 +7824,844 @@ This won't work if you launch the shell from the command line interpreter.
 Recap
 
 The Python shell provides a perfect opportunity both to play around with new modules and to refresh your memory about familiar ones. You can quickly test how methods and functions work, look up which methods an object has or which functions there are in any module. And such a useful option as autocomplete can help you with that!
-Report a typo
-71 users liked this theory. 1 didn't like it. What about you?
-1068 users completed this topic. Latest completion was
-about 3 hours ago
-.
-Current topic:
-Experiments with Python shell
-Stage 2
-Topic depends on
-Introduction to Python shell
-Stage 2
-Declaring a function
-Stage 1
-Load module
-Stage 1
-Topic is required for
-Debugging in shell
-Stage 2
-Table of contents:
-↑ Theory: Experiments with Python shell
-Feedback & Comments
 .................
 
+Python Errors and exceptions Errors
 
+The first thing you need to know about programming is how to print "Hello, world!". The second one is that this might be a challenging task, as even such a tiny script can contain various errors. Here you are:
+
+print("Hello, world!"
+
+If you run this code, you'll get this:
+
+Traceback (most recent call last):
+  File "FULL/PATH/TO_YOUR/SCRIPT.PY", line 1
+    print("Hello, world!"
+                        ^
+SyntaxError: unexpected EOF while parsing
+
+Traceback is a stack trace that appears when your code causes an error and it reports detailed information on that particular error, indicating the definite files in which the error occurred. Nonetheless, the lines that are the most informative for us right now are the last two. They point out the mistake in your code.
+
+This might seem a little bit frustrating, but generally what errors are designed for is to allow Python to communicate with you. Whenever you see those red threatening lines – don't panic! Just read carefully what they are saying.
+Syntax errors
+
+In the example above, we can clearly see the magic word SyntaxError that is likely to haunt you throughout the period of getting used to Python. A large variety of different errors are referred to as syntax errors. What they usually mean is that Python has encountered a problem while trying to compile your program and it can't even execute it.
+
+If you read carefully the text of a traceback, it will help you to find mistakes and correct them quite easily, as you can see an arrow pointing to the exact place where Python found the mistake in your code. Every syntax error has got an associated value. It describes an error in detail. In the example, the message "SyntaxError: unexpected EOF while parsing" means that something else had been expected after your statement, but you didn't pass it to the interpreter. In our case, there should've been a closing round bracket ")".
+
+Mistakes won't be so obvious all the time. It is quite likely that the message you'll get as an associated value will be the most common and obscure "invalid syntax", which isn't really helpful. Well, anyway, to locate the problem it’s enough to know that the error you got is in the syntax.
+Common errors for beginners
+
+Some of the most common syntax errors are:
+
+    wrong spelling of keywords and function names, e.g. While instead of while, pint instead of print;
+    the wrong number of parentheses in function calls, e.g. print "just one round bracket");
+    indents are also the fertile soil for errors, therefore, use spaces and tabs carefully;
+    quotes. Don’t forget to wrap a string in quotes of the same type: triple quotes for multi-line strings, double or single quotes for ordinary strings.
+
+Modern IDEs tend to check everything for you and kindly highlight the places where you have made a mistake or typo, but don't rely on this too much and be ready to read the traceback yourself.
+
+Mind that Python stops compiling your program after finding the first Syntax error, so it might take a while to fix every single mistake.
+
+Check the following piece of code, for example. It looks like a Petri dish of syntax errors:
+
+missing_quote  = "this is a mistake!
+another_string = this is not a string!"
+parted_string = 'I'd like to be highlighted, but'
+          prnit("I am not")
+
+As you can see, there are plenty of syntax errors in this tiny piece of code. If you’ve checked and corrected everything from the list above and yet you encounter those error messages – don’t worry! Once again, it’s just Python trying to tell you that something went wrong. Deep breath, reread the article, and continue perfecting your programming skills!
+...............
+
+Python Object-oriented programming Method overriding
+
+One important concept of object-oriented programming is overriding. Overriding is the ability of a class to change the implementation of the methods inherited from its ancestor classes.
+
+This feature is extremely useful as it allows us to explore inheritance to its full potential. We can not only reuse existing code and method implementations but also upgrade and advance them if needed.
+
+Overriding is a concept applicable only to class hierarchies: without inheritance, we cannot talk about method overriding. Let's consider an example of a class hierarchy:
+
+class Parent:
+    def do_something(self):
+        print("Did something")
+
+
+class Child(Parent):
+    def do_something(self):
+        print("Did something else")
+
+
+parent = Parent()
+child = Child()
+
+parent.do_something()  # Did something
+child.do_something()  # Did something else
+
+Here, the method do_something is overridden in the class Child. If we hadn't overridden it, the method would have the same implementation as in the class Parent. The code child.do_something() would then print Did something.
+super()
+
+Python has a special function for calling the method of the parent class inside the methods of the child class: the super() function. It returns a proxy, a temporary object of the parent class, and allows us to call a method of the parent class using this proxy. Let's take a look at the following example:
+
+class Parent:
+    def __init__(self, name):
+        self.name = name
+        print("Called Parent __init__")
+
+
+class Child(Parent):
+    def __init__(self, name):
+        super().__init__(name)
+        print("Called Child __init__")
+
+We've overridden the __init__() method in the child class but inside it we've called the __init__() of the parent class. If we create an object of the class Child, we will get the following output:
+
+jack = Child("Jack")
+# Called Parent __init__
+# Called Child __init__
+
+In Python 3 the method super() doesn't have any required parameters. In earlier versions, however, you had to specify the class from which the method would search for a superclass. In our example, instead of super().__init__(name) we would write super(Child, self).__init__(name). Both lines of code mean the same thing: that we want to find the superclass of the class Child and then call its __init__ method. In Python 3 these are equivalent, so you don't have to explicitly write the type. However, it may be useful if you want to access the method of the "grandparent" class: the parent class of the parent class.
+super() with single inheritance
+
+The method super() is mostly used in cases of multiple inheritance: when a class inherits from two or more classes. There it is most convenient and useful but you'll have a chance to learn about that in the next topics. This method can also be of use with single inheritance which is what we'll cover now.
+
+Suppose we have the following classes:
+
+class Animal:
+    def __init__(self, species):
+        self.species = species
+
+       
+class Cat(Animal):
+    def __init__(self, name):
+        self.name = name
+        
+
+In the subclass Cat, we've overridden the __init__() method. Now the objects of the class Cat do not have the species attribute. We would like for objects of the Cat class to have this attribute, but adding it as a parameter of the __init__ seems a bit excessive. We could, of course, simply create this attribute inside the initializer, but there is a more elegant (and more Pythonic) solution. This solution, as expected, is the super() method:
+
+class Animal:
+    def __init__(self, species):
+        self.species = species
+        print("Animal __init__")
+
+
+class Cat(Animal):
+    def __init__(self, name):
+        super().__init__("cat")
+        self.name = name
+        print("Cat __init__")
+
+Let's create a cat and see how this has worked:
+
+fluffy = Cat("Fluffy")
+# Animal __init__
+# Cat __init__
+
+print(fluffy.species, fluffy.name)  # cat Fluffy
+
+Both __init__() methods have done their job and our cat has both the species and the name attributes.
+
+You may wonder why we had to do it this way. Why did we have to call the parent implementation of the method when we could manage without it? Well, the example above is a very simple one. In real-life projects, classes, their methods and the relationships between them are much more sophisticated.
+
+Overriding does provide us with an opportunity to enhance the methods of the parent class but it doesn't mean that we should discard the original implementations. Sometimes, you may not have full access to the original implementation and you may not know everything that happens there. If you just override it, there may be unexpected consequences. So, it is recommended to always call the parent implementation. This way, you get the best of both worlds: you have the original implementation and your enhancements.
+
+Just be careful and thoughtful when overriding method and using the super() function and you'll do great!
+.......................................
+
+Python Testing and debugging Debugging in shell
+
+You've already learned how to start the Python shell and experiment there with modules and functions. But the thing is, the more code you write, the higher chances to get a bug. A bug is an unexpected error in your code that is usually hard to find. The process of finding and fixing bugs is called debugging, and it's another thing the Python shell can be used for.
+
+IDE (Integrated Development Environment) is thought to be better for debugging, and we'll study how to use JetBrains PyCharm for this purpose in another topic. However, IDLE also provides useful tools for debugging, so let's see how it can be done.
+Debugging
+
+There may be different reasons to check your program: e.g. you get an exception in your code and don't understand where it comes from, or the code doesn't work as intended. In such cases it's a good idea to use the shell to find out what's going wrong.
+
+Let's see how the debugger works in action. Say, we have written a function to generate passwords:
+
+import random
+import string
+
+
+def password_generator(length):
+    chars = string.ascii_letters + string.digits + string.punctuation
+    password = ''
+    for _ in range(length):
+        password += random.choice(chars)
+    return password
+
+It works fine but let's improve it a bit so that it doesn't use confusing characters for a password, such as “0” and “O” or “1” and “l”:
+
+def password_generator(length):
+    chars = string.ascii_letters + string.digits + string.punctuation
+    confusing_chars = ('O', '0', '1', 'l')
+    password = ''
+    while not len(password) == length:
+        char = random.choice(chars)
+        if char in confusing_chars:
+            password += char
+    return password
+
+After these changes our code doesn't work correctly: every password we get contains only those characters.
+
+>>> password_generator(6)
+'1llO0O'
+
+Using IDLE's debugger will help us find out what's happening inside the function.
+Theory
+
+First, import the modules random and string, then copy the function to IDLE and press Enter to see the prompt >>> again. To initialize the debugging mode, click "Debug" --> "Debugger" from the menu above. You'll see “DEBUG ON” in IDLE, and a new window will appear. Check all checkboxes so that we can investigate all options the IDLE debugger provides.
+
+To start the debugging, just call the function from the shell, i.e. type password_generator(4) and press Enter. The debugger window will change: it hasn't executed any code yet but we can see the line of code it has paused at, as well as global variables.
+
+Now, a few words about what can be found in this window.
+
+In area 1, there are a number of buttons. With their help, we can control the process of debugging,
+
+    Go runs the program as usual until an input is requested or until the program finishes. In our case, there would be no difference with the regular run of the program.
+    Step serves to go through the code line by line: the most helpful action when debugging. If the line to be executed calls a function, the debugger will go to the first line of the function definition ("stepping into" the function). If we press this button now, we will find ourselves at the line where the chars variable is defined.
+    Over is similar to the "Step" button, except that if the statement to be executed has a function call in it, the debugger executes the function without showing any details: it "steps over" the function, returning the result and pausing again. However, in our example, if we press "Over" in the beginning, the result will be the same as with the regular run of the program: debugger will execute the password_generator() function and pause; but this function is the only piece of code we have for debugging right now.
+    Out is used when we are inside some function's code. It finishes execution of the function as it would do regularly, returns the result and pauses: we "step out" of the function. Instead of clicking "Step" repeatedly to jump out of the function, we can simply use "Out".
+    Quit stops the execution of the entire program. This is helpful if we must start debugging again from the beginning of the program.
+
+Area 2 contains checkboxes:
+
+    "Stack" is what we can see in area 3. It shows which line and from where is executed.
+    "Locals" (area 4) and "Globals" (area 5) contain lists of local and global variables as they change. Remember, local variables are those created inside a function whereas global variables are those created outside of any functions.
+    "Source" is helpful when we use some functions or classes from other modules. If it is checked, the module source file will open when we go through lines addressing it, and the corresponding line in the module will be highlighted in gray. In our example, when we reach the line char = random.choice(chars), the file "random.py" will open so that we can see what is happening inside the function choice() there.
+
+Practice
+
+Once we understand what's in this window, let's proceed to debugging our function.
+
+Press the "Step" button several times and carefully look at what is happening in the debugger window. Once you have reached the line where our function initializes the char variable, check the value of this variable. If you see that some line wasn't executed, it means that you need to double check the line with if condition:
+
+Ah, that’s it! The condition is wrong, we need to check if it’s NOT in confusing_chars. Sometimes we need to sleep more, sometimes we need a coffee-break, otherwise, we can make errors in our code.
+
+def password_generator(length):
+    chars = string.ascii_letters + string.digits + string.punctuation
+    confusing_chars = ('O', '0', '1', 'l')
+    password = ''
+    while not len(password) == length:
+        char = random.choice(chars)
+        if char not in confusing_chars:
+            password += char
+    return password
+
+After changing this line your function works perfectly!
+
+>>> password_generator(5)
+'wBxu9'
+
+All glory to the Python shell and debugging!
+Recap
+
+The debugging process in the Python shell is quite simple and clear: it allows a user to run a code line by line to find errors and fix them.
+
+.................................
+
+ What you'll do in this stage 1/5: Creating models
+Project: HyperJob Agency
+
+Description
+"HyperJob" is a recruitment agency founded back in 1970. Its managers still prefer to communicate by phone or email and search for employees in an old-fashioned way. That was an efficient strategy some twenty years ago, but nowadays, potential employees prefer to apply for jobs online. The problem is that "HyperJob" still doesn't have a website, so they want you to develop one as soon as possible.
+
+The website should allow recruiters to create vacancies and job seekers to create resumes.
+Objectives
+
+We need to safely store all the vacancies and resumes in a database. Your first task is to develop data models to manage the database tables.
+
+Use the default settings of the project with the predefined SQLite database.
+
+Throughout the project, we will need at least two models: Vacancy and Resume. Both of them should have description and author fields. The description field is a text field for no more than 1024 symbols and the author field is a foreign key linked to the django.contrib.auth.models.User model.
+
+Define Vacancy and Resume in the models.py module and migrate them to the database.
+.........
+
+ What you'll do in this stage 2/5: Main menu
+Project: HyperJob Agency
+Hard 2 minutes
+492 users solved this problem. Latest completion was
+about 3 hours ago
+.
+Description
+
+The website is designed for recruitment managers and candidates. A manager can create vacancies and read candidates' resumes, while a candidate can create a resume and view vacancies. Both managers and candidates need to be able to log in, log out, and see their profile.
+
+To begin with, let's create a main page with a menu.
+Objectives
+
+The main page of the service will have a menu with links to all other pages that the user needs: vacancy list, resume list, and personal profile. At the top of the page, there should be a greeting message.
+
+Let's look at its design.
+
+    The menu should contain an <h2> element at the top:
+
+    <h2>Welcome to HyperJob!</h2>
+
+    Next, there should be a menu with five links in separate <div> elements:
+        Login page (href attribute equals "/login");
+        Sign up page (href attribute equals "/signup");
+        Vacancy list (href attribute equals "/vacancies");
+        Resume list (href attribute equals "/resumes");
+        Personal profile (href attribute equals "/home").
+
+If you start the application on your computer with the python manage.py runserver command, the menu page should be available at the address localhost:8000.
+
+If you want to use a custom directory for your templates, add its path to the TEMPLATE['DIRS'] list in the settings.py module.
+
+To combine a template with the HTTP handler, you can use the django.shortcuts.render function:
+
+render(request, template_name)
+
+You don't need to implement the handlers for these pages yet: you'll do that in the next steps.
+...............................
+
+ Theory: Launching web server
+23 minutes 0 / 5 problems solved
+1837 users solved this topic. Latest completion was
+about 5 hours ago
+.
+Make a Plan
+
+After all the hard work of making an Internet service, you obviously want to see the result. What does it take to launch a Django web server? If you already have an application in your project, there are only a few steps left:
+
+    Configure settings.py file;
+    Launch the server on your local machine;
+    Fix the errors (if any) with the help of the debug page.
+
+It's hard to keep in mind the whole process of creating a service, so for mere convenience let's use a prepared project of my old friend Alan Smithee, a very prolific film director.
+Prepare a simple project
+
+First, let's prepare a new project.
+
+We'll create the project "smithee" itself, the application "movies", one template and one view handler. Run this code from your shell in any directory you want:
+
+# Unix
+django-admin startproject smithee
+cd smithee
+django-admin startapp movies
+mkdir -p movies/templates/movies
+
+# Windows
+django-admin startproject smithee
+cd smithee
+django-admin startapp movies
+mkdir movies\templates\movies
+
+Add this code to the movies/templates/movies/index.html file:
+
+<!DOCTYPE html>
+<title>Movies</title>
+
+<h1>Films by {{ director }}</h1>
+
+<ul>
+{% for movie in movies %}
+  <li>{{ movie.year }} - {{ movie.title }}</li>
+{% endfor %}
+</ul>
+
+Add this code to the movies/views.py module:
+
+from django.conf import settings
+from django.shortcuts import render
+from django.views import View
+
+movies = [
+    {
+        'title': 'Catchfire',
+        'year': 1990,
+    },
+    {
+        'title': 'Mighty Ducks the Movie: The First Face-Off',
+        'year': 1997,
+    },
+    {
+        'title': 'Le Zombi de Cap-Rouge',
+        'year': 1997,
+    },
+]
+
+
+class MovieView(View):
+    def get(self, request, *args, **kwargs):
+        return render(
+            request, 'movies/index.html', context={
+                'director': settings.DIRECTOR,
+                'movies': movies,
+            }
+        )
+
+In this example, we use the settings.DIRECTOR variable from the settings.py module. A bit further we shall see how to define it.
+
+Since it is just a single page on the site, we add one path to the urlpatterns list in smithee/urls.py:
+
+from django.urls import path
+from movies.views import MovieView
+
+urlpatterns = [
+    path('', MovieView.as_view()),
+]
+
+Now that the preparation is done, we should configure the settings.py module to launch the server.
+Configure settings.py
+
+Having the code, the only thing left is to tweak some configs in the settings.py module to make it work.
+
+Remember that changing settings is a flexible way to control the work of your service. In addition to the existing variables, you can add your own so that they can be reachable throughout the project.
+
+Settings.py is a usual Python module. The difference is that in this file you only define the variables and do not write any functions or classes. You can locate the module in the <project_name> directory: in our case, it is smithee/settings.py. Let's look more closely at what we need to work with a basic Django project.
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+BASE_DIR is the name of the folder where your project is located in the file system. You don't need to modify it because Django provides an OS independent way to find a base directory for your project. However, you should use it if you want to manipulate the included files. For example, if you want to define the name for a log file, it can be LOG_FILE = os.path.join(BASE_DIR, 'smithee.logs')
+
+ALLOWED_HOSTS = ['localhost']
+
+When you run your server on the local machine, you should add 'localhost' to the ALLOWED_HOSTS. Localhost is an alias for the local address of your computer. But if your server is meant to be reachable via the Internet, you also need to add the name of your web host. If you were Google, the ALLOWED_HOSTS might look like this: ALLOWED_HOSTS = ['www.google.com'].
+
+DATABASES = {}
+
+By default, Django generates config with a sqlite3 database for you. Since we don't use a database in our application, we can remove the default configuration and save DATABASES as an empty dictionary.
+Add Application to the Settings
+
+To include your applications in the project, you should modify the INSTALLED_APPS variable in the settings.py module.
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'movies',
+]
+
+By default, Django prepares this list with applications you can use for your web service. Right now we don't get too deep with what django.contrib.* modules are, but it's necessary to add your own application to the INSTALLED_APPS. In our case, it is the "movies" app.
+
+If you forget to include your app, you may see an exception upon starting your server or accessing a page. For example, the server will not be able to find a template because you do not register an app where this template is placed.
+
+With that, we finish our work with the default configuration; but if you're curious, you can tweak some more.
+Custom Variables
+
+In settings.py you can include other values of your project. You may have constants that stay the same for several modules or even applications. For example, the name of the director for whom we're making a site may appear on different pages of our project, so we save his name in settings.py module:
+
+DIRECTOR = 'Alan Smithee'
+
+You may define this variable in any place in the settings.py. After that, you can access the DIRECTOR's name through the import django.conf.settings.DIRECTOR. You can pass it to your templates or use it for any other purpose you wish. It's convenient to save it in the settings: if you accidentally made a mistake and wrote DIRECTOR = 'John Doe', you can easily fix it in just one place instead of a dozen.
+Starting the Local Server
+
+We have an application and we configured the settings: looks like we're finally ready to start the server! To launch the server on your local machine, you should run the runserver command from your terminal in the project's root directory:
+
+python manage.py runserver
+
+If you see "Error: That port is already in use.", it means that the default port 8000 is in use by some other application. In this case, you can choose any other available port and pass it as the last argument to the command:
+
+python manage.py runserver 9090
+
+So python manage.py runserver is an equivalent to python manage.py runserver 8000.
+
+Congratulations! Django starts the server and now you can access it through the browser. Type the address http://localhost:8000 or http://localhost<port_you_used> and you will see a part of Alan Smithee filmography.
+Django Debug Mode
+
+Let's face it though: bugs happen. If something went wrong, you want to know where in the application it is. You can start the debug mode adding DEBUG = True in your settings.py module. Debug mode is a state of an application when it shows tracebacks and other useful information in your browser when the server fails.
+
+It's strongly recommended to set DEBUG = False when you launch the server for your users. You can accidentally disclose some secret information through the tracebacks. To prevent such situations, do not forget to turn off the debug mode for the production servers.
+
+When the application was under construction, one of the developers forgot the {% endfor %} tag in the movies/templates/movies/index.html:
+
+<!DOCTYPE html>
+<title>Movies</title>
+
+<h1>Films by {{ director }}</h1>
+
+<ul>
+{% for movie in movies %}
+  <li>{{ movie.year }} - {{ movie.title }}</li>
+</ul>
+
+When we try to access the page with the films, we get this instead:
+
+As you see, Django suggests in which file and line there is a mistake. It's not always that easy to spot the place of an error in your code for Django, but you can use other information from the debug page to find it by yourself.
+..............................
+
+ Theory: Processing requests
+
+Any web application exists to provide information to clients and receive it from them. A client sends a request to the server and it answers with some response. Usually, the communication between these two sides is processed by the HTTP protocol using GET, POST and some other types of requests.
+
+In this topic, we shall focus on processing GET requests in Django as they are most frequently used.
+How to process GET requests
+
+My friend Willy Wonka heard about Django, and now he wants to use it to advertise the sorts of candy his factory makes. To help him reach the goal, we will create a simple response with candies in it.
+
+We assume that the name of the Django project is "factory" and the name of the application is "candies".
+
+Let's look at the assortment:
+
+candies = {
+    "Fudge":  {
+        "color": "beige",
+        "price": "priceless",
+        "available": 100,
+    },
+    "Chocolate shock": {
+        "color": "brown",
+        "price": "precious",
+        "available": 50,
+    },
+    "Marshmallow" : {
+        "color": "pink",
+        "price": "all the money in the world",
+        "available": 200,
+    },
+}
+
+On the main page, Willy wants to put only the assortment list and nothing else. So when you go to his site, you send a GET request to his service. GET is a method used to receive data from the server.
+
+Django has classes that take over routine work with HTTP requests, so the only part you should implement by yourself is the response. The response is an instance of the inheritors of Django HttpResponseBase class, like HttpResponse. We add this piece of code to the candies/views.py module:
+
+from django.http import HttpResponse
+from django.views import View
+
+class MainPageView(View):
+    def get(self, request, *args, **kwargs):
+        html =  "\n".join(f"<div>{candy}</div>" for candy in candies)
+        return HttpResponse(html)
+
+First, we make a new class and inherit it from the View. To provide a method to handle the GET request, we simply define a method with the name "get". This is a general rule in Django, so if you want to make a POST handler, you define a method with the name "post", et cetera.
+
+So, back to our sweet matters: passing HTML as a string to the HttpResponse class, we return a simple HTML page with a list of candies. Django application does the rest of the work by itself to send the data to the client. It's that simple to make a response.
+
+Not Found Pages
+For each customer who wants to know more about a particular candy, we make another page and class to process that request. And if the customer asks us about a nonexistent candy, we've got to report that we couldn't find it. The corresponding HTTP status code is 404, but we don't see any codes in the previous example. So how does it even work?
+
+As we said, Django does a lot of work under the hood. The HttpResponse set status code 200 in the answer for you, which means that the communication was OK. We cannot change this code in the HttpResponse class, but we can use the Exception class Http404, which will signal to a user that they're trying to GET a page that doesn't exist.
+
+Let's make a handler for a custom candy page in the same module:
+
+from django.http import HttpResponse, Http404
+from django.views import View
+
+class CandyView(View):
+    def get(self, request, candy_name, *args, **kwargs):
+        if candy_name not in candies:
+            raise Http404
+
+        candy_info = "".join(
+            f"<tr><td>{key}:</td><td>{value}</td></tr>"
+            for key, value in candies[candy_name].items()
+        )
+        return HttpResponse(f"<table><tbody>{candy_info}</tbody></table>")
+
+As you see, the third parameter in our GET method is cryptic "candy_name". We will learn how to pass this positional parameter at the next step; for now, just assume that we get the name of the candy from a user's request. If we have this sort of candy, we display all the information about it. But if we don't have one, we raise Http404 Exception because we can't find it in our stock.
+
+Pay attention that we return an instance of HttpResponse and raise Http404 since Http404 is an exception class
+
+URL Routing
+We create handlers for requests, but how does Django choose the appropriate one? For this purpose, we define URL routes in factory/urls.py module:
+
+from django.urls import path, re_path
+from candies.views import MainPageView, CandyView
+
+urlpatterns = [
+    path("candies/", MainPageView.as_view()),
+    re_path("candies/(?P<candy_name>[^/]*)/?", CandyView.as_view()),
+]
+
+For example, if Willy's site has the hostname www.willywonka.com, then the assortment page will be available at the address www.willywonka.com/candies, and information specifically about fudge will be found at www.willywonka.com/candies/Fudge.
+
+In the second path link, we see a regular expression (?P<candy_name>[^/]*). This expression extracts the variable candy_name from the link and passes it to the handler. That's how we get our candy_name in the previous example.
+
+To bind a link with an appropriate handler, we can call path or re_path functions and add the result to the urlpatterns list. The first argument of each function receives a string that describes a pattern for a link that comes after the hostname. It can be a simple string in path function and a regular expression in case of re_path. The second argument is a handler that will process a request.
+
+The order of the links in urlpatterns is kept when Django searches for the required handler. If you paste regular expression "candies/(?P<candy_name>[^/]*)/?" before "candies/", you will never reach the second one since "candies/" is a subset of the first regular expression. So you should paste the superset expression latter on the list.
+
+The path "" (empty string) is a superset for all routes. If you paste it first in the URL patterns list with call to re_path, all the other handlers will become unreachable.
+
+Conclusion
+
+To process a request in the Django application, you should define a handler and implement all methods that it can process. If you inherit this class from the View, you should match the desired HTTP verb with the same method in your class. Specifically, if you want to process the GET request, you should define the "get" method and return an instance of the Django HttpResponse class.
+
+After you do that, you can bind this handler to the link it belongs to. Just add it to the list of urlpatterns at the urls.py module.
+....................
+
+ Theory: Django template language
+
+A typical HTML page consists of hundreds or even thousands of lines: it's a lot of repetitive work. But what if you need to change a tag or a class of several similar elements? If you're working on a site, this little problem can totally spoil the evening. Yet there is a way to avoid unnecessary copy-pasting: you can use the power of Django Template Language (DTL).
+DTL
+
+DTL is a language that allows you to manipulate the elements of an HTML page on the server side. Templates are files that consist of special syntax constructions and HTML layout. These constructions allow you to modify the page content before sending it to the client. So templates help you personalize a page directly: for each user, with love.
+
+The work with DTL starts with four basic pillars: variables, control expressions, tags, and filters. All of that comes with the framework. You can also define your own filters and tags, but before you get to that, let's figure out what can you get from the box, starting with variables and control expressions.
+
+Remember, templates have tools for programming right on the page, but you should not overuse them: for that purpose, views handlers are more appropriate. If you only need the length of some expression and not the expression itself, you should calculate the length before sending it to a template. But if you need both, DTL will come in handy.
+
+Prepare a project
+
+Suppose there is a John Doe, a guy who's working on creating some genius blog. Every blog starts with the first post and the first impression, so the content better be good; we'll leave that to John though, since our job here is code.
+
+To launch examples, create a Django project with any name you like and add the application blog in it. Define a simple handler to render a template in the blog/views.py module:
+
+from django.views import View
+from django.shortcuts import render
+
+blog_name = "John Doe's blog"
+post = {
+    "text": "My first post",
+    "theme": "Easy talk",
+    "comments": [
+        "My congratulations!!",
+        "Looking forward to the second one",
+    ],
+}
+
+
+class MainView(View):
+    def get(self, request, *args, **kwargs):
+        context = {"post": post, "blog_name": blog_name}
+        return render(request, "blog/index.html", context=context)
+
+Do not forget to add "blog" to your INSTALLED_APPS in the settings.py module, and then add this code to your urls.py module:
+
+from blog.views import MainView
+ 
+urlpatterns = [
+    path("", MainView.as_view()),
+]
+
+You don't need to understand how this code works now: just look through the content of the post and blog_name variables.
+
+Finally, paste this template to the blog/templates/blog/index.html file:
+
+<html>
+  <body>
+    <h2>{{ blog_name }}</h2>
+    <div>{{ post.text }}</div>
+  </body>
+</html>
+
+You can keep using this file later on, just replace its content when you need!
+
+Variables
+Variables are used to deliver the data to the templates. Usually, all data comes from the controller, but you can define your own variables right in the template, too.
+
+Here is what you can pass from the Python code to the template:
+
+    primitive types like integers and strings
+    common Python structures such as dict, list, set, or tuple
+    functions with no extra arguments
+    an instance of a custom class
+
+Actually, you can pass any Python object in templates, but for any other type it makes no sense because you cannot use them properly.
+
+To render the variable or its attributes, you should use special syntax to distinguish DTL from HTML. Put the variable in double curly brackets {{ and }}:
+
+<!-- Accessing a variable -->
+<h2>{{ blog_name }}</h2>
+
+If you want to access the attributes of the variable, use the dot operator:
+
+<!-- Accessing the value of a dict by key -->
+<div>{{ post.text }}</div>
+
+It's possible to call the variable's method without extra arguments, the difference is that you don't need round brackets after the call. If you want to capitalize all words in the blog name, call the title method of a string variable {{ blog_name.title }}. Here is a nice simple example for you:
+
+<h2>{{ blog_name.title }}</h2>
+
+Conditions
+With controlling statements, we can choose what we show or do on the page depending on the conditions.
+
+Just like in Python, branching in DTL consists of if, elif, and else statements. Curly brackets with the percent sign {% and %} embrace them and all the other tags: it differs tags from variables syntactically.
+
+All branches should start with {% if %} and end with {% endif %} statements.
+
+Let's get back to our example: we've notified John that we used his first post as an example for our topic, so he makes the next entry with the link to our site. The text of the post speaks for itself, so John does not add a theme. He wants to retain the layout of a page, and if there's no theme, the header will be "No theme" as well:
+
+<html>
+  <body>
+    <h3>
+      {% if post.theme %} Theme: {{ post.theme }}
+      {% else %} No theme
+      <!-- Without the closing tag the whole expression is not correct -->
+      {% endif %}
+    </h3>
+    <a href="https://hyperskill.org">How to make a post entry with Django</a>
+  </body>
+</html>
+
+If you don't have a variable at all when you get access to a value, it's not a grave mistake. The rule is, if we do not pass a variable in the context, the value of this variable is by default None.
+
+Be cautious if you want to access attributes and methods of None: this will cause an error.
+
+Loops
+
+Sometimes we don't know how many items we've got in a list, but we still want to show all of them one by one on a page. Loops are helpful when you have to iterate over a lot of similar elements.
+
+The template loops are similar to Python for expressions. Start one with {% for %} and end it with {% endfor %} statements.
+
+For example, look at the comment section under John's first post: he's getting somewhere! Let's render all comments to the post one after another:
+
+<html>
+  <body>
+    {% for comment in post.comments %}
+      <div>Comment #{{ forloop.counter }}: {{ comment }}</div>
+    {% endfor %}
+  </body>
+</html>
+
+To access the index of the element, we use {{ forloop.counter0 }} for zero-based iteration and {{ forloop.counter }} for one-based .
+Conclusion
+
+Let's summarize! Templates provide tools to:
+
+    Pass variables to the HTML layout
+    Control the data you render
+    Iterate over multiple similar elements
+
+Template language helps you work with the HTML layout and make your life as a developer much easier. And not a single John will get hurt when creating a blog!
+..................
+
+ Theory: Rendering templates
+
+Making a site, we want to isolate the processing of requests from the final representation to the client, so that we can update each part independently. We receive a request, do the hard work, and pass the data further to prepare HTML pages. And if we want to rework our HTML templates, the processing requests may stay the same. One thing is still missing: how to bind these two parts together?
+Render
+
+A not-so-famous writer Jack Torrance started working on his new book. He wants to publish this book online with the table of contents on the main page and each chapter on a separate page. He sends us the first draft of his story, so we start making a site for this book:
+
+book = {
+    'Chapter 1': 'All work and no play makes Jack a dull boy...',
+    'Chapter 2': 'All work and no play makes Jack a dull boy...',
+    'Chapter 3': 'All work and no play makes Jack a dull boy...',
+    'Chapter 4': 'All work and no play makes Jack a dull boy...',
+}
+
+This novel seems a little bit strange, but what do we know about modern literature, so we create an HTML template for the main page with the contents of the book:
+
+<h2> Shining </h2>
+<ul>
+  {% for chapter in book %}
+  <li>
+    <a href="/chapter/{{ forloop.counter }}">Chapter {{ forloop.counter }}</a>
+  </li>
+  {% endfor %}
+</ul>
+
+Each item of an unordered list is a link to a chapter page, so the users can comfortably read each chapter on a separate HTML page. We name our application "book" and save this template to the "book/templates/book/contents.html" file.
+
+To return the user to the contents page, we need to implement an HTTP handler with the get method:
+
+from django.views import View
+from django.shortcuts import render
+
+
+class MainPageView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'book/contents.html', context={'book': book})
+
+All that we do is call the render function and pass to it the template path and a context dictionary with the book. All the variables from the context will be available in the template now, and we can access them by the key from a dictionary.
+
+By default, Django is looking for templates in all of your "<application_name>/templates" directories, so we do not include "book/templates" in the template path, because Django will do it for us.
+
+To serve this handle on the route "/contents", add path('contents', book.views.MainPageView.as_view()) to the urlpatterns list in the "<project_name>/urls.py" module.
+
+TemplateView
+In the example above, we define the get method. This method seems idle because it delegates all the work to the render function. How can we omit this duplication of responsibilities?
+
+This time we have a new template in the "book/templates/book/chapter.html" file to render a single chapter :
+
+<h2> Chapter {{ n_chapter }} </h2>
+<ul>
+  {{ content }}
+</ul>
+
+Django contains many other classes with predefined code for different use cases. We define a new handler to serve the chapter content and inherit it from django.views.generic.base.TemplateView, because we have a template and some data to pass to it.
+
+from django.views.generic.base import TemplateView
+
+
+class ChapterView(TemplateView):
+    template_name = 'book/chapter.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs) 
+        n_chapter = kwargs['n_chapter']
+        context['n_chapter'] = n_chapter
+        context['content'] = book['Chapter ' + n_chapter]
+        return context
+
+Most often, we create one template per page, so we save it as the template_name attribute of our class. We don't need to define the get method: we fulfill the context and return it from the get_context_data call. It looks like we are working directly with a template and don't think about the routines of processing the request.
+
+Routing pattern
+The last thing to do to make our handler work is define a correct pattern for the router. We expect to receive the variable n_chapter in the **kwargs argument of the method, so we define our URL path with the help of a regular expression:
+
+re_path('chapter/(?P<n_chapter>\d+)', book.views.ChapterView.as_view()) 
+
+We again add it to the urlpatterns. The part n_chapter should match the variable name we expect to receive in the **kwargs argument of the get_context_data method. Get the result page:
+
+Here, our work is finished for now. We'll eagerly expect more chapters from the writer. Meanwhile, all theory and no practice makes Jack a dull boy: let's play with some practical tasks.
+...................
+ Work on project. Stage 2/5: Main menu
+Project: HyperJob Agency
+
+The website is designed for recruitment managers and candidates. A manager can create vacancies and read candidates' resumes, while a candidate can create a resume and view vacancies. Both managers and candidates need to be able to log in, log out, and see their profile.
+
+To begin with, let's create a main page with a menu.
+Objectives
+
+The main page of the service will have a menu with links to all other pages that the user needs: vacancy list, resume list, and personal profile. At the top of the page, there should be a greeting message.
+
+Let's look at its design.
+
+    The menu should contain an <h2> element at the top:
+
+    <h2>Welcome to HyperJob!</h2>
+
+    Next, there should be a menu with five links in separate <div> elements:
+        Login page (href attribute equals "/login");
+        Sign up page (href attribute equals "/signup");
+        Vacancy list (href attribute equals "/vacancies");
+        Resume list (href attribute equals "/resumes");
+        Personal profile (href attribute equals "/home").
+
+If you start the application on your computer with the python manage.py runserver command, the menu page should be available at the address localhost:8000.
+
+If you want to use a custom directory for your templates, add its path to the TEMPLATE['DIRS'] list in the settings.py module.
+
+To combine a template with the HTTP handler, you can use the django.shortcuts.render function:
+
+render(request, template_name)
+
+You don't need to implement the handlers for these pages yet: you'll do that in the next steps.
+Report a typo
+Write a program 
+.........................
+Remaining Steps:
+
+ What you'll do in this stage 3/5: Vacancy and resume pages 10 minutes
+While loop Theory + Practice 27 minutes
+Design principles Theory + Practice 8 minutes
+Files in Python Theory + Practice 14 minutes
+Reading files Theory + Practice 21 minutes
+Built-in exceptions Theory + Practice 17 minutes
+Exception handling Theory + Practice 20 minutes
+Block-level elements Theory + Practice 14 minutes
+Audio Theory + Practice 11 minutes
+What is CSS Theory + Practice 3 minutes
+HTML attributes id and class Theory + Practice 9 minutes
+HTML forms Theory + Practice 15 minutes
+Queries and filters Theory + Practice 18 minutes
+Using models with templates Theory + Practice 29 minutes
+Work on project. Stage 3/5: Vacancy and resume pages 10 minutes +
+15
+What you'll do in this stage 4/5: Authentication 10 minutes
+Domains Theory + Practice 7 minutes
+Template tags Theory + Practice 17 minutes
+Submitting data Theory + Practice 33 minutes
+Forms and validation Theory + Practice 41 minutes
+Registration and authentication Theory + Practice 23 minutes
+Work on project. Stage 4/5: Authentication 10 minutes +
+15
+What you'll do in this stage 5/5: Creating new vacancies and resumes 10 minutes
+Object modification with ORM Theory + Practice 22 minutes
+Work on project. Stage 5/5: Creating new vacancies and resumes 10 minutes +
 
